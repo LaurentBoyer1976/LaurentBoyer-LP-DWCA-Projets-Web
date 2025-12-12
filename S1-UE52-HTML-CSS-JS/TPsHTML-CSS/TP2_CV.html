@@ -173,12 +173,21 @@
             text-align: center;
             box-sizing: border-box;
         }
+        /* TP navigation common style */
+        .tp-navigation{ display:flex; gap:1rem; justify-content:center; align-items:center; background:#fff8d6; border:2px solid #e0c070; padding:0.5rem; border-radius:8px; margin:0.5rem 0; }
+        .tp-navigation a{ color:#1a3a3a; font-weight:700; text-decoration:none; padding:0.4rem 0.6rem; background:#ffffff; border:1px solid #ddd; border-radius:6px; }
+        .tp-navigation a:hover{ background:#1a3a3a; color:#fff; }
     </style>
 </head>
 <body>
     <!-- En-tête du CV -->
     <div class="title__container">
         <h1>Curriculum vitae Boyer Laurent: développeur informatique</h1>
+        <nav class="tp-navigation">
+            <a href="./TP1_CV.html">← Précédent TP1</a>
+            <a href="./TP3_SemanticLayout.html">Suivant TP3 →</a>
+            <a href="../home_S1.html">Retour Home S1</a>
+        </nav>
     </div>
     
     <hr class="title__header">
@@ -208,9 +217,7 @@
                 <li class="navBar__list--items studies"><a href="#formations">Formations</a></li>
                 <li class="navBar__list--items exp"><a href="#experiences">Expériences</a></li>
                 <li class="navBar__list--items skills"><a href="#competences">Compétences</a></li>
-                <li class="navBar__list--items about"><a href="#activites">Engagements et activités</a></li>
-                <li class="navBar__list--items TP" ><a href="./index.html">Vers CV index</a></li>
-                <li class="navBar__list--items TP1" ><a href="./TP1_CV.html">CV optimisé avec éléments structurant</a></li>
+                <li class="navBar__list--items about"><a href="#activites">Engagements et activités</a></li>                
             </ul>  
         </div>
     </div>

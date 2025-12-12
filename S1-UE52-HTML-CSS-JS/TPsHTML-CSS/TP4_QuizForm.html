@@ -235,15 +235,20 @@
                 background-color: #ffed94;
             }
 
+        /* TP navigation common style */
+        .tp-navigation{ display:flex; gap:1rem; justify-content:center; align-items:center; background:#fff8d6; border:2px solid #e0c070; padding:0.5rem; border-radius:8px; margin:0.5rem 0; }
+        .tp-navigation a{ color:#1a3a3a; font-weight:700; text-decoration:none; padding:0.4rem 0.6rem; background:#ffffff; border:1px solid #ddd; border-radius:6px; }
+        .tp-navigation a:hover{ background:#1a3a3a; color:#fff; }
+
         </style>
 </head>
 <body>
 <header class="title__container">
     <h1>Quiz HTML5 et CSS</h1>
-    <nav class="navBar">
-        <div class="link_container">
-            <a class="toTP3" href="TP-html/indexTPN3_rendu.html">To TP N3</a>
-        </div>
+    <nav class="tp-navigation">
+        <a href="./TP3_SemanticLayout.html">← Précédent TP3</a>
+        <a href="./TP5_Grid.html">Suivant TP5 →</a>
+        <a href="../home_S1.html">Retour Home S1</a>
     </nav>
 </header>
 <main>
@@ -255,10 +260,9 @@
                 <dt>Description :</dt>
                 <dd>La première partie concerne vos informations personnelles, Nom, prénom, adresse mail et la date de réalisation du quiz</dd>
                 <dd>La seconde partie concerne les questions. Choix multiples, choix unique, par options et par saisie de texte(code).</dd>
-
                 <dt>Finalité :</dt>
                 <dd>Le but de ce quiz est de vous permettre de vérifier l'état de vos connaissances en HTML5.</dd>
-                <dd>Grâce à ses résultats, vous pourrez faire un état des lieux de votre maitrise de ce langage de base en développement informatique.</dd>
+                <dd>Grâce à ses résultats, vous pourrez faire un état des lieux de votre maîtrise de ce langage de base en développement informatique.</dd>
                 <dd>Vous pourrez ainsi orienter plus facilement votre apprentissage sur les points que vous connaissez le moins et approfondir puis pérenniser ceux que vous maitrisez le plus.</dd>
             </dl>
         </section>
@@ -354,6 +358,7 @@
             </fieldset>
 
         </form>
+</main>
 </main>
 <footer>
     <p>TP4 Boyer Laurent 20/11/2025</p>

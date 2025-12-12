@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
@@ -111,11 +111,22 @@
         }
 }
 
+  /* TP navigation common style */
+  .tp-navigation{ display:flex; gap:1rem; justify-content:center; align-items:center; background:#fff8d6; border:2px solid #e0c070; padding:0.5rem; border-radius:8px; margin:0.5rem 0; }
+  .tp-navigation a{ color:#1a3a3a; font-weight:700; text-decoration:none; padding:0.4rem 0.6rem; background:#ffffff; border:1px solid #ddd; border-radius:6px; }
+  .tp-navigation a:hover{ background:#1a3a3a; color:#fff; }
+
   </style>
 </head>
 <!-- NE PAS MODIFIER LE CODE CI-APRES -->
 <body>
-  <header>Header</header>
+  <header>Header
+    <nav class="tp-navigation">
+      <a href="./TP4_QuizForm.html">← Précédent TP4</a>
+      <a href="../home_S1.html">Retour Home S1</a>
+    </nav>
+  </header>
+  
   <article>Article</article>
   <nav>Navigation</nav>
   <aside>Aside</aside>
