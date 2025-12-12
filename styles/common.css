@@ -1,0 +1,121 @@
+/* --- common.css --- */
+
+/* 📚 Imports de Polices partagés */
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund+Guides:wght@100..400&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Bungee+Shade&family=Alegreya:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Bungee+Shade&family=Cardo:ital,wght@0,400;0,700;1,400&family=Caudex:ital,wght@0,400;0,700;1,400;1,700&family=Londrina+Shadow&family=Nabla&family=Zain:ital,wght@0,200;0,300;0,400;0,700;0,800;0,900;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap');
+
+/* 🎨 Variables de la Palette et Couleurs */
+:root{
+    /* Palette */
+    --c1: rgb(81 205 174);   /* mint */
+    --c2: rgb(81 174 205);   /* teal */
+    --c3: rgb(81 112 205);   /* indigo */
+    --c4: rgb(205 81 112);   /* coral */
+    --c5: rgb(205 174 81);   /* warm gold */
+
+    /* Gradients */
+    --bg: linear-gradient(135deg,var(--c1), var(--c2));
+    --card-grad: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+    --accent-grad: linear-gradient(90deg, var(--c3), var(--c4));
+
+    /* General Styling */
+    --muted: #f6f8fa;
+    --text: #0f1720;
+    --card-width: 550px; /* preferred fixed card width for two-column layout */
+}
+/* 🔄 Reset et Styles de Base */
+*{ box-sizing:border-box; margin:0; padding:0 }
+
+body{
+    /* Background et Police partagés */
+    font-family: "Zain", sans-serif;
+    color:var(--text);
+    background: radial-gradient(circle at 10% 10%, rgba(81,205,174,0.06), transparent 15%),
+                linear-gradient(180deg, rgba(81,174,205,0.03), rgba(81,112,205,0.02));
+    -webkit-font-smoothing:antialiased;
+    min-height: 100vh; /* Pour le sticky footer */
+    display: flex;
+    flex-direction: column;
+}
+/* Liens */
+a{ color: var(--c3); text-decoration: none; }
+/* 🔝 Header */
+.header{
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+    border-bottom: 6px solid rgba(255,255,255,0.12); /* Ajouté depuis homesStyle */
+    padding: 1.75rem 1rem; /* Padding pour l'alignement */
+    display:flex;
+    flex-direction:column;
+}
+.header__title{
+    font-family: "Fugaz One", sans-serif;
+    color:var(--c3);
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    text-align: center;
+    margin-bottom: .5rem;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+    /* Padding supprimé si le padding est sur .header */
+}
+.header__nav{ display:flex; justify-content:flex-end; padding:0 .75rem }
+.navBar__list{ display:flex; gap:1rem; align-items:center }
+.navBar__list--items{ list-style:none }
+.navBar__list--itemLink{
+    display:inline-block;
+    padding:.45rem .8rem;
+    border-radius:15px;
+    background: rgba(255,255,255,0.08);
+    color:var(--text);
+    font-weight:700;
+    font-family: "Cardo", serif;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: all 200ms ease;
+}
+.navBar__list--itemLink:hover{
+    background: var(--accent-grad);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+}
+.navBar__list--itemLink:focus{
+    outline:3px solid rgba(81,112,205,0.18);
+    outline-offset:3px;
+}
+/* 🖼️ Card Style (tpSection) */
+.tpSection{
+    background: var(--card-grad);
+    border-radius: 14px; /* Unifié à 14px de homesStyle */
+    padding: 0.9rem; /* Unifié à 0.9rem de homesStyle */
+    box-shadow: 0 12px 32px rgba(16,24,40,0.10); /* Unifié à l'ombre plus forte de homesStyle */
+    border: 1px solid rgba(81,112,205,0.08); /* Bordure de la version homesStyle */
+    transition: transform 200ms ease, box-shadow 200ms ease; /* Ajouté pour le hover */
+}
+.tpSection:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(81,112,205,0.06);
+}
+
+.tpSection__title{
+    font-family: "Fugaz One", sans-serif;
+    font-size: 1.3rem;
+    color: var(--c3);
+    margin: 0 0 .6rem 0;
+}
+.tpSection__text{
+    font-family: "Zain", sans-serif;
+    color: #233;
+    line-height: 1.6;
+    padding: .4rem 0;
+}
+/* Main content wrapper */
+main{ flex: 1 0 auto; }
+/* 🦶 Footer */
+.footer{
+    background: linear-gradient(135deg,var(--c4),var(--c5));
+    color:white;
+    padding:1.25rem;
+    text-align:center;
+    margin-top:1.5rem;
+}
+/* Small utility */
+.highlight-accent{ background: linear-gradient(90deg,var(--c1),var(--c2)); color:#052; padding:.2rem .4rem; border-radius:6px }

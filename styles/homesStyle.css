@@ -1,0 +1,123 @@
+/* Home (S1) specific stylesheet — imports the shared theme */
+
+@import url('./common.css');
+
+/* --- homesStyle.css (Après refactorisation) --- */
+
+
+/* Styles spécifiques à la mise en page 'Homes' */
+
+/* Title container that groups the section title and the author dl */
+.title__container{
+    background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.88));
+    border-left: 6px solid var(--c3);
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(16,24,40,0.06);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid rgba(16,24,40,0.06); /* Bordure globale non-c3 */
+}
+
+.title__wrapper{
+    display:flex;
+    flex-direction:column;
+    gap: .25rem;
+}
+.title__wrapper .section__title{
+    font-family: "Fugaz One", sans-serif;
+    color: var(--c3);
+    font-size: 1.6rem;
+    margin: 0;
+}
+.title__wrapper h4{
+    font-family: "Cardo", serif;
+    font-style: italic;
+    color: rgba(0,0,0,0.6);
+    margin: 0;
+}
+
+.sections__wrapper .tpSection{
+    /* Override du style card: utiliser les couleurs spécifiques du tpSection de homesStyle */
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,252,255,0.98));
+    border: 1px solid rgba(81,112,205,0.08);
+    width: var(--card-width); /* Utilise la variable du common.css */
+}
+
+.tpSection__container--fileView{
+    border-color: rgba(81,112,205,0.06);
+    width:100%; height:360px; border-radius:10px; border:1px solid rgba(0,0,0,0.08); display:block; box-sizing:border-box
+}
+
+.tpSection__container--fileLegend{
+    font-family: "Cardo", serif;
+    font-weight:700;
+    background: linear-gradient(90deg, rgba(81,112,205,0.06), rgba(205,81,112,0.04));
+    border: 1px solid rgba(81,112,205,0.06);
+    padding:.4rem .6rem;
+    border-radius:6px;
+    color:var(--text);
+}
+.tpSection__container--fileLegend:focus{ outline:3px solid rgba(81,112,205,0.18); outline-offset:3px }
+
+.tpSection__container{ display:flex; flex-direction:column; gap:.5rem; width:100% }
+
+
+/* Definition Lists (dl) Styles spécifiques */
+.wrapper{ display: block; max-width: 380px; }
+.wrapper dl{
+    background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.45));
+    padding: .6rem;
+    border-radius:8px;
+    border:1px solid rgba(0,0,0,0.04);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); /* Ajouté depuis le DL du début */
+    margin: 0.25rem 0;
+    /* two-column layout: dt on the left, dd on the right */
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    column-gap: 1rem;
+    row-gap: .3rem;
+    align-items: start;
+}
+.wrapper dl dt{ font-family: "Cardo", serif; font-style: italic; font-weight:700; color:var(--c3); grid-column: 1; }
+.wrapper dl dd{ font-family: "Cardo", serif; font-style: italic; margin: 0; color: #234; grid-column: 2; }
+
+
+/* Main layout spécifiques */
+.mainArticle__title{ font-family: "Fugaz One", sans-serif; font-size:1.6rem; margin-bottom:1rem; color: var(--c3);}
+.mainArticle__wrapper, .sectionTitle__wrapper{ display:flex; flex-wrap:wrap; gap:1rem; justify-content:center }
+
+/* Grid layout: show sections as two columns */
+.sections__wrapper{
+    display: grid;
+    /* two fixed-width columns so cards keep their visual width and align nicely */
+    grid-template-columns: repeat(2, var(--card-width));
+    gap: 1rem;
+    justify-content: start;
+    align-items: start;
+}
+/* Main layout: place the two mainArticle__wrapper columns side-by-side */
+.mainArticle{
+    max-width:100%;
+    margin:1.25rem auto;
+    padding:1rem;
+    display:grid;
+    grid-template-columns: 1fr 1fr 560px;
+    gap:1.5rem;
+    align-items:start
+}
+/* ensure first .title__container goes in the left column and second in the right column */
+.mainArticle > .title__container:first-of-type{ grid-column: 1 / 2 }
+.mainArticle > .title__container:last-of-type{ grid-column: 2 / 4 }
+
+.aside{width:100%; margin:1.25rem auto; padding:1rem;}
+.aside__wrapper{width: 100%;}
+/* Responsiveness spécifiques à 'Homes' */
+@media (max-width:800px){
+    .sections__wrapper{ grid-template-columns: 1fr; }
+    .tpSection{ width:100%; }
+    .header__nav{ justify-content:center }
+    .mainArticle{ display:block }
+}
