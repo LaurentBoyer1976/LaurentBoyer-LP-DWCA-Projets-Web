@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>To-Do List — Index</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body{font-family:'Lato',sans-serif;background:#f4f9f4;padding:40px 20px;color:#223}
+        .card{max-width:980px;margin:0 auto;background:#fff;border-radius:10px;padding:28px;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+        h1{font-family:'Playfair Display',serif;color:#2d5016;margin-bottom:6px;font-size:2em}
+        p.lead{color:#4a7c59;margin-bottom:18px;font-size:1.05em}
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:18px}
+        a.tile{display:block;padding:18px;border-radius:8px;background:#f9fff9;color:#2d5016;text-decoration:none;font-weight:700;border:1px solid #e6f1e6;transition:all .3s ease}
+        a.tile:hover{transform:translateY(-4px);box-shadow:0 6px 18px rgba(45,80,22,.08);background:#eaf7ea}
+        footer{margin-top:18px;text-align:center;color:#7a8a7a;font-size:.9em}
+        footer a{color:#4a7c59;text-decoration:none}
+        footer a:hover{text-decoration:underline}
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body{padding:20px 15px}
+            .card{padding:20px}
+            h1{font-size:1.6em}
+            p.lead{font-size:1em}
+            .grid{grid-template-columns:1fr;gap:10px}
+            a.tile{padding:15px;font-size:0.95em}
+            footer{font-size:0.85em}
+        }
+        
+        @media (max-width: 480px) {
+            body{padding:15px 10px}
+            .card{padding:15px;border-radius:8px}
+            h1{font-size:1.4em}
+            a.tile{padding:12px}
+        }
+
+        /* Classe pour le texte du footer */
+        .footer-info {
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <h1>To-Do List — Index</h1>
+        <p class="lead">Navigation vers les pages de travail et les versions par étape (2A / 3B / 3C / 3D).</p>
+
+        <article class="grid">
+            <h2>Lien vers les différentes étapes:</h2>
+            <div class="grid">
+            <a class="tile" href="Html/Home.html">Accueil (Html/Home.html)</a>
+            <a class="tile" href="Html/Form-ToDoList.html">Formulaire (Html/Form-ToDoList.html) — version JS (outil)</a>
+            <a class="tile" href="Html/TasksSummary.html">Récapitulatif (Html/TasksSummary.html)</a>
+            <a class="tile" href="Etapes/2A_Formulaire_HTML_CSS/Form-ToDoList-2A.html">Étape 2A — Formulaire (HTML/CSS seulement)</a>
+            <a class="tile" href="Etapes/3B_Enregistrement_localStorage/Form-ToDoList-3B.html">Étape 3B — Formulaire + Enregistrement (localStorage)</a>
+            <a class="tile" href="Etapes/3C_Affichage_Taches/TasksSummary-3C.html">Étape 3C — Affichage des tâches (récapitulatif)</a>
+            <a class="tile" href="Etapes/3D_Mise_a_jour_Archivage/TasksSummary-3D.html">Étape 3D — Mise à jour / Archivage</a>
+            </div>
+            
+        </article>
+
+        <footer>
+            <div>Fichiers originaux : <a href="Html/Form-ToDoList.html">Html/Form-ToDoList.html</a> — <a href="Html/TasksSummary.html">Html/TasksSummary.html</a></div>
+            <div class="footer-info">Documentation et reviews dans le dossier <strong>Etapes/</strong></div>
+        </footer>
+    </main>
+</body>
+</html>
+                        

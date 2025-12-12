@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "libelle": "TP HTML/CSS: Création d'une page web responsive",
+    "date_de_creation": "2023-10-01T10:00:00Z",
+    "date_de_modification": "2023-10-01T10:00:00Z",
+    "date_de_completion": null,
+    "compteur_de_temps_passe_mn": 120,
+    "description": "Créer une page web responsive en utilisant HTML5 et CSS3 avec les techniques de Flexbox et Grid.",
+    "assignation": "Justine",
+    "documentation": [
+      "https://developer.mozilla.org/fr/docs/Web/HTML",
+      "https://css-tricks.com/snippets/css/a-guide-to-flexbox/"
+    ],
+    "fichiers_joints": [
+      "maquette-desktop.png",
+      "specifications.pdf"
+    ],
+    "to_do_list_associee": [
+      {
+        "ToDoA": [
+          {
+            "idToDoA": "A1",
+            "subTask": "Structure HTML",
+            "commentaire": "Créer la structure sémantique"
+          }
+        ],
+        "ToDoB": [
+          {
+            "idToDoB": "B1",
+            "subTask": "Styles CSS",
+            "commentaire": "Appliquer les styles responsive"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "libelle": "Colorimétrie et théorie des couleurs",
+    "date_de_creation": "2023-10-01T10:00:00Z",
+    "date_de_modification": "2023-10-01T10:00:00Z",
+    "date_de_completion": null,
+    "compteur_de_temps_passe_mn": 120,
+    "description": "Comprendre les codes hexadécimaux, RGB, HSL et leur nomenclature pour une utilisation optimale en web design.",
+    "assignation": "Justine",
+    "documentation": [
+      "https://www.w3schools.com/colors/",
+      "https://color.adobe.com/"
+    ],
+    "fichiers_joints": [
+      "palette-couleurs.pdf",
+      "exemples-harmonies.png"
+    ],
+    "to_do_list_associee": [
+      {
+        "ToDoA": [
+          {
+            "idToDoA": "A1",
+            "subTask": "Comparaison RGB/HEX",
+            "commentaire": "Comprendre la conversion entre RGB et Hexadécimal"
+          }
+        ],
+        "ToDoB": [
+          {
+            "idToDoB": "B1",
+            "subTask": "Comparaison HSL/HEX",
+            "commentaire": "Comprendre la conversion entre HSL et Hexadécimal"
+          }
+        ]
+      }
+    ]
+  }
+]

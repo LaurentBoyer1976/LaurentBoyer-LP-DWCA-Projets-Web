@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quiz HTML5</title>
+        <meta name="description" content="Page tutoriel sur l'organisation des éléments HTML et les propriétés float et inline-block">
+        <meta name="author" content="Boyer Laurent">
+        <meta name="keywords" content="HTML, tutoriel, sémantique, CSS, float, inline-block">
+        <link rel="icon" type="image/png" href="https://static.alwaysdata.com/aldjango/img/favicon.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund+Guides:wght@100..400&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Bungee+Shade&family=Alegreya:wght@400;700&display=swap" rel="stylesheet">
+        <!--<link rel="stylesheet" href="./styles/style.css">-->
+        <script src="./PHP/script.php" defer></script>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                font-family: "Playwrite DE Grund Guides", cursive, sans-serif, serif;
+                box-sizing: border-box;
+            }
+            :root{
+                --size: 20px;
+                --bck-grdColor: #ffed94;
+                --yellow: #feac5e;
+                --yellow1: #eb8220;
+                --lightblue: #4bc0c8;
+                --lightblue1:#41a6ad;
+                --lightblue2: #256266;
+                font-size: 16px;
+
+
+            }
+            body{
+                background-color: #f5f5f5;
+                min-height: 100vh;
+            }
+            main{
+                padding: 1rem;
+            }
+            .title__container, article{
+                background-color: #ffed94;
+                border-bottom-left-radius: 15px;
+                border-bottom-right-radius: 15px;
+                border: 3px solid rgba(68, 93, 250, 0.63);
+            }
+            article{
+                border-radius: 15px;
+                margin-bottom: 0.5rem;
+            }
+            h1{
+                font-family: "Bungee Shade", cursive;
+                font-weight: 400;
+                text-align: center;
+                width: 100%;
+                padding: 2.5rem 1rem;
+                font-size: 5vw;
+                background: linear-gradient(
+                        -45deg,
+                        #4bc0c8 25%,
+                        #feac5e 25%,
+                        #feac5e 50%,
+                        #4bc0c8 50%,
+                        #4bc0c8 75%,
+                        #feac5e 75%,
+                        #feac5e);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-size: var(--size) var(--size);
+                background-position: 0 0;
+                animation: stripes 1s linear infinite;
+                box-sizing: border-box;
+            }
+            @keyframes stripes {
+                0%{
+                    background-position: 0 0;
+                }
+                100% {
+                    background-position: var(--size) 0;
+                }
+            }
+            .navBar{
+                display: block;
+                width: 100%;
+                text-align: right;
+                padding: 1.5rem;
+            }
+            .link_container{
+                width: 100%;
+            }
+            .toTP3{
+                border: 3px solid rgba(68, 93, 250, 0.63);
+                border-radius: 15px;
+                padding: 1rem;
+                text-align: center;
+                text-decoration: none;
+                font-family: "Bungee Shade", cursive;
+                font-weight: 400;
+                font-size: 2vw;
+                color: rgba(68, 93, 250, 0.83);
+            }
+            .toTP3:hover{
+                background-color: rgba(68, 93, 250, 0.63);
+                color: #ffed94;
+            }
+            #email:valid{
+                border: 1px solid rgba(0, 215, 106, 0.63);
+                border-radius: 5px;
+                box-shadow: 0 0 8px rgba(0, 215, 106, 0.63);
+            }
+            #email:invalid{
+                border: 1px solid rgba(215, 20, 20, 0.63);
+                border-radius: 5px;
+                box-shadow: 0 0 5px rgba(215, 20, 20, 0.63);
+            }
+            h2{font-family: "Bungee Shade", cursive;
+            font-weight: 400;
+            text-align: center;
+            width: 100%;
+            padding: 2.5rem 1rem;
+            font-size: 3vw;
+            background: linear-gradient(
+            -45deg,
+               #4bc0c8 25%,
+            #feac5e 25%,
+            #feac5e 50%,
+            #4bc0c8 50%,
+            #4bc0c8 75%,
+            #feac5e 75%,
+            #feac5e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: var(--size) var(--size);
+            background-position: 0 0;
+            animation: stripes 1s linear infinite;
+            box-sizing: border-box;
+            }
+            section{
+                width: 100%;
+                display: block;
+                text-align: center;
+                margin-bottom: 1.5rem;
+
+            }
+            h3{
+                font-family: "Bungee Shade", cursive;
+                font-weight: 400;
+                text-align: center;
+                padding: 1rem;
+            }
+            dl{
+                display: block;
+                width: 100%;
+                text-align: left;
+                padding: 2rem 1rem;
+            }
+            dt{
+                font-family: "Bungee Shade", cursive;
+                font-weight: 300;
+                padding: 1rem;
+                margin-left: 1rem;
+            }
+            dd{
+                padding-left: 1rem;
+            }
+            form{
+                margin-top: 1rem;
+                padding: 2rem 1rem;
+                display: block;
+                width: 100%;
+                text-align: left;
+                border: 3px solid rgba(68, 93, 250, 0.63);
+                border-radius: 15px;
+                background: rgba(195, 202, 247, 0.35);
+            }
+            label{
+                display: block;
+                width: 40%;
+                padding: 0.5rem 1rem;
+                margin-bottom: 0.35rem;
+            }
+            input[type="text"], input[type="date"], input[type="email"]{
+                width: 100%;
+                display: inline-block;
+                padding: 0.45rem;
+                border-radius: 15px;
+            }
+            fieldset{
+                display: block;
+                width: 100%;
+                text-align: left;
+                padding: 0.45rem;
+                border: none;
+                margin: 1rem auto;
+            }
+            legend{
+                display: block;
+                width: 100%;
+                text-align: left;
+                padding: 0.45rem;
+            }
+            .underline{
+                text-decoration: underline;
+            }
+            fieldset > label{
+                display: inline-block;
+                vertical-align: middle;
+
+            }
+            textarea{
+                display: block;
+                width: 100%;
+                text-align: left;
+                padding: 0.45rem;
+
+            }
+            select{
+                display: block;
+                width: 100%;
+                height: fit-content;
+            }
+            footer > p {
+                display: block;
+                width: 100%;
+                text-align: center;
+                font-family: "Bungee Shade", cursive;
+                font-weight: 400;
+                padding: 1rem;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+                border: 3px solid rgba(68, 93, 250, 0.63);
+                background-color: #ffed94;
+            }
+
+        </style>
+</head>
+<body>
+<header class="title__container">
+    <h1>Quiz HTML5 et CSS</h1>
+    <nav class="navBar">
+        <div class="link_container">
+            <a class="toTP3" href="TP-html/indexTPN3_rendu.html">To TP N3</a>
+        </div>
+    </nav>
+</header>
+<main>
+    <article>
+        <h2>Pourquoi ce quiz?</h2>
+        <section>
+            <h3> Description et finalité :</h3>
+            <dl>
+                <dt>Description :</dt>
+                <dd>La première partie concerne vos informations personnelles, Nom, prénom, adresse mail et la date de réalisation du quiz</dd>
+                <dd>La seconde partie concerne les questions. Choix multiples, choix unique, par options et par saisie de texte(code).</dd>
+
+                <dt>Finalité :</dt>
+                <dd>Le but de ce quiz est de vous permettre de vérifier l'état de vos connaissances en HTML5.</dd>
+                <dd>Grâce à ses résultats, vous pourrez faire un état des lieux de votre maitrise de ce langage de base en développement informatique.</dd>
+                <dd>Vous pourrez ainsi orienter plus facilement votre apprentissage sur les points que vous connaissez le moins et approfondir puis pérenniser ceux que vous maitrisez le plus.</dd>
+            </dl>
+        </section>
+    </article>
+        <form id="formQuiz" action="./PHP/script.php" method="post">
+            <label class="underline" for="date">Date :</label>
+            <input type = "date" id="date" name = "date">
+
+            <fieldset>
+                <legend class="underline">Vos informations personnelles :</legend>
+                <label for="nom">Nom:</label>
+                <input type="text" id="nom" name="nom" placeholder="Saisissez votre nom" required><br>
+                <label for="prenom">Prenom :</label>
+                <input type="text" id="prenom" name="prenom" placeholder="Saisissez votre prenom" required><br>
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" placeholder="Saisissez votre email exemple: nomPrenom@xxxx.xx" pattern=".+@.+\..+" required><br>
+            </fieldset>
+            <fieldset>
+                <legend class="underline">Le questionnaire :</legend>
+                <fieldset>
+                    <legend>Quelle API de stockage côté client, introduite avec HTML5, est la plus appropriée pour stocker des données structurées et volumineuses nécessitant des requêtes d'indexation complexes, plutôt que de simples paires clé-valeur ?</legend>
+                    <label for="radio1">Web Storage (localStorage ou sessionStorage):</label>
+                    <input class="radio" type ="radio" id="radio1" name="radio" value="Web Storage">
+                    <label for="radio2">IndexedDB:</label>
+                    <input class="radio" type ="radio" id="radio2" name="radio" value="IndexedDB"><br>
+                    <label for="radio3">Cookies HTTP:</label>
+                    <input class="radio" type ="radio" id="radio3" name="radio" value="Cookies HTTP"><br>
+                    <label for="radio4">Web SQL Database:</label>
+                    <input class="radio" type ="radio" id="radio4" name="radio" value="Web SQL Database"><br>
+                </fieldset>
+                <fieldset>
+                    <legend>Sélectionnez tous les éléments structurels de HTML5 qui peuvent être considérés comme du contenu de sectionnement (sectioning content).<br>
+                        Elles doivent généralement contenir un élément de titre ("h1" à "h6") pour des raisons sémantiques et d'accessibilité (création d'un contour du document).</legend>
+                    <label for="checkbox1">Élément : div</label>
+                    <input class="checkboxes" type ="checkbox" id="checkbox1" name="choix[]" value="div"><br>
+                    <label for="checkbox2">Élément : section</label>
+                    <input class="checkboxes" type ="checkbox" id="checkbox2" name="choix[]" value="section"><br>
+                    <label for="checkbox3">Élément : article</label>
+                    <input class="checkboxes" type ="checkbox" id="checkbox3" name="choix[]" value="article"><br>
+                    <label for="checkbox4">Élément : footer</label>
+                    <input class="checkboxes" type ="checkbox" id="checkbox4" name="choix[]" value="footer"><br>
+                </fieldset>
+                <fieldset>
+                    <legend>
+                        Saisissez la ligne de code HTML5 qui permet de spécifier, via un attribut, qu'un champ de formulaire doit être rempli avant la soumission.
+                    </legend>
+                    <label class="underline" for="textarea">Saisissez votre code html:</label>
+                    <textarea rows="15" cols="50" id="textarea" name="codeUtilisateur" required></textarea>
+                </fieldset>
+                <fieldset>
+                    <legend>
+                        1. Quel attribut HTML5 permet à un bouton spécifique d'ignorer la validation du formulaire lors de sa soumission ?<br>
+                        2. Quel élément est utilisé pour les méta-informations de l'en-tête du document et non le corps visible de la page ?<br>
+                        3. Quel sélecteur (en utilisant la flèche) cible spécifiquement le premier paragraphe enfant DIRECT d'un élément div ?<br>
+                        4. Quelle unité de mesure CSS est considérée comme absolue et non relative à la taille de la fenêtre (viewport) ou de la police de base ?<br>
+                    </legend>
+                    <label class="underline" for="select">Déroulez la liste par un click!</label>
+                    <select id="select" name="select[]" multiple required>
+                        <option value="">---Faites votre choix!---</option>
+                        <optgroup label="HTML5 - Q.1 : Quel attribut HTML5 permet à un bouton spécifique d'ignorer la validation du formulaire lors de sa soumission ?">
+                            <option value="html_q1_formvalidate=false">formvalidate="false"</option>
+                            <option value="html_q1_novalidate">novalidate</option>
+                            <option value="html_q1_formnovalidate">formnovalidate</option>
+                            <option value="html_q1_type=button">type="button"</option>
+                        </optgroup>
+                        <optgroup label="HTML5 - Q.2 : Quel élément est utilisé pour les méta-informations de l'en-tête ?">
+                            <option value="html_q2_header">header</option>
+                            <option value="html_q2_head">head</option>
+                            <option value="html_q2_title">title</option>
+                            <option value="html_q2_main">main</option>
+                        </optgroup>
+                        <optgroup label="HTML5 - Q.3 : Quel attribut désactive la validation du formulaire par le navigateur ?">
+                            <option value="html_q3_required">required</option>
+                            <option value="html_q3_disabled">disabled</option>
+                            <option value="html_q3_novalidate">formnovalidate</option>
+                            <option value="html_q3_pattern">pattern</option>
+                        </optgroup>
+                        <optgroup label="CSS3 - Q.4 : Quel sélecteur cible le premier paragraphe enfant d'un div ?">
+                            <option value="css_q4_first_child">div p:first-child</option>
+                            <option value="css_q4_first_of_type">div p:first-of-type</option>
+                            <option value="css_q4_child">div > p</option>
+                            <option value="css_q4_only_child">div p:only-child</option>
+                        </optgroup>
+
+                    </select>
+                </fieldset>
+
+            </fieldset>
+            <fieldset>
+                <legend class="underline">Soumettez ou réinitialisez votre formulaire</legend>
+                <button type="submit" value="Envoyer" name="Envoyer">envoyer</button>
+                <button type="reset" value="Annuler">annuler</button>
+            </fieldset>
+
+        </form>
+</main>
+<footer>
+    <p>TP4 Boyer Laurent 20/11/2025</p>
+</footer>
+</body>
+
+</html>
