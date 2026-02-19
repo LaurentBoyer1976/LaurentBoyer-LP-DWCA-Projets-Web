@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="./Assets/Icon/SVG/MonCIne-signe.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Styles/Css/style.css">
+    <title>MONCINÉ</title>
+  </head>
+  <body id="BodyElement">
+    <!-- ========== HEADER ========== -->
+    <header class="header" id="HeaderElement">
+      <div class="header__curtain">
+        <img class="header__curtain-img" src="./Assets/design/images/curtains.jpg" alt="" id="CurtainHeader" aria-hidden="true">
+      </div>
+      <section class="header__content" id="headerContent">
+        <h2 class="header__logo" aria-label="Accueil Mon Ciné">
+          <img class="header__logo-img" src="./Assets/Icon/SVG/MonCIne-signeLogoHeaderBleu.svg" alt="MONCINÉ" id="MonCIneHeader">
+        </h2>
+        <nav class="nav--header" id="navBarHeader">
+          <input type="checkbox" id="burger-toggle" class="burger-checkbox" aria-label="Ouvrir le menu de navigation">
+
+          <label for="burger-toggle" class="burger-icon">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+          </label>
+          <ul class="nav__list">
+            <li class="nav__item"><a class="nav__link" href="?page=accueil">Accueil</a></li>
+            <li class="nav__item"><a class="nav__link" href="?page=propos">À Propos</a></li>
+            <li class="nav__item"><a class="nav__link" href="?page=films">Films</a></li>
+            <li class="nav__item"><a class="nav__link" href="?page=series">Series</a></li>
+            <li class="nav__item"><a class="nav__link" href="?page=contact">Contact</a></li>
+          </ul>
+        </nav>
+      </section>
+    </header>
+
+    <!-- ========== MAIN ========== -->
+    <main id="MainElement">
+      <article class="series">
+        <h1 class="series__title">LA SÉRIE DU VENDREDI</h1>
+        <div class="series__intro">
+          <p class="series__text">MonCiné propose une série à visionner le vendredi soir de 20h30 à 23h, soit un total de 3 épisodes par soirée, chaque série est sélectionnée en suivant la ligne éditorial de MonCiné.</p>
+          <p class="series__text">La série sera diffusée jusqu'à la fin de la saison débutée, des cycles de types de séries seront proposés en alternance pour varier entre polar, société et drame.</p>
+        </div>
+        <div class="series__grid">
+          <figure class="series__card">
+            <a class="series__link" href="#"><img class="series__poster" src="./Assets/Images/series/bates-motel-2013-2017/poster.jpg" alt="Poster de la série Bates Motel"></a>
+          </figure>
+          <figure class="series__card">
+            <a class="series__link" href="#"><img class="series__poster" src="./Assets/Images/series/breaking-bad-2008-2013/poster.jpg" alt="Poster de la série Breaking Bad"></a>
+          </figure>
+          <figure class="series__card">
+            <a class="series__link" href="#"><img class="series__poster" src="./Assets/Images/series/dexter-2006-2012/poster.jpg" alt="Poster de la série Dexter"></a>
+          </figure>
+          <figure class="series__card">
+            <a class="series__link" href="#"><img class="series__poster" src="./Assets/Images/series/homeland-2011-2020/poster.jpg" alt="Poster de la série Homeland"></a>
+          </figure>
+          <figure class="series__card">
+            <a class="series__link" href="#"><img class="series__poster" src="./Assets/Images/series/house-of-cards-2013-2018/poster.jpg" alt="Poster de la série House of Cards"></a>
+          </figure>
+          <figure class="series__card">
+            <a class="series__link" href="#"><img class="series__poster" src="./Assets/Images/series/mr-robot-2015-2019/poster.jpg" alt="Poster de la série Mr. Robot"></a>
+          </figure>
+          <figure class="series__card">
+            <a class="series__link" href="#"><img class="series__poster" src="./Assets/Images/series/ozark-2017-2022/poster.jpg" alt="Poster de la série Ozark"></a>
+          </figure>
+          <figure class="series__card">
+            <a class="series__link" href="#"><img class="series__poster" src="./Assets/Images/series/the-knick-2014-2015/poster.jpg" alt="Poster de la série The Knick"></a>
+          </figure>
+          <figure class="series__card">
+            <a class="series__link" href="#"><img class="series__poster" src="./Assets/Images/series/the-sopranos-1999-2007/poster.jpg" alt="Poster de la série The Sopranos"></a>
+          </figure>
+          <figure class="series__card">
+            <a class="series__link" href="#"><img class="series__poster" src="./Assets/Images/series/the-walking-dead-2010-2022/poster.jpg" alt="Poster de la série The Walking Dead"></a>
+          </figure>
+          <figure class="series__card">
+            <a class="series__link" href="#"><img class="series__poster" src="./Assets/Images/series/the-wire-2002-2008/poster.jpg" alt="Poster de la série The Wire"></a>
+          </figure>
+          <figure class="series__card">
+            <a class="series__link" href="./HTML/Page/oneSerie.html"><img class="series__poster" src="./Assets/Images/series/true-detective-2014/poster.jpg" alt="Poster de la série True Detective"></a>
+          </figure>
+        </div>
+      </article>
+    </main>
+
+    <!-- ========== ASIDE (Highlight film) ========== -->
+    <aside id="AsideElement" class="highlight">
+      <figure class="highlight__gallery">
+        <img class="highlight__img highlight__img--one" src="./Assets/Images/films/zero-dark-thirty-2012/image6.jpg" alt="Scène de Zero Dark Thirty">
+        <img class="highlight__img highlight__img--two" src="./Assets/Images/films/zero-dark-thirty-2012/image4.jpg" alt="Scène de Zero Dark Thirty">
+        <img class="highlight__img highlight__img--three" src="./Assets/Images/films/zero-dark-thirty-2012/image5.jpg" alt="Scène de Zero Dark Thirty">
+      </figure>
+      <section class="highlight__info">
+        <h2 class="highlight__subtitle">Cette semaine...</h2>
+        <h3 class="highlight__title">ZERO DARK THIRTY</h3>
+        <p class="highlight__text">Basé sur la traque réelle d'Oussama ben Laden durant une décennie, ce drame intense se concentre sur Maya, une analyste de la CIA dont l'obsession et la détermination sans faille la poussent aux limites de l'épuisement moral et professionnel.</p>
+        <a class="highlight__link" href="#">voir le détail</a>
+      </section>
+      <figure class="highlight__poster">
+        <img class="highlight__poster-img" src="./Assets/Images/films/zero-dark-thirty-2012/poster.jpg" alt="Poster du film Zero Dark Thirty">
+      </figure>
+    </aside>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer" id="FooterElement">
+      <div class="footer__content" id="footerContent">
+        <nav class="nav--footer" id="navBarFooter">
+          <ul class="nav__list--footer">
+            <li class="nav__item--footer"><a class="nav__link--footer" href="?page=accueil">Accueil</a></li>
+            <li class="nav__item--footer"><a class="nav__link--footer" href="?page=propos">À propos</a></li>
+            <li class="nav__item--footer"><a class="nav__link--footer" href="?page=films">Films</a></li>
+            <li class="nav__item--footer"><a class="nav__link--footer" href="?page=series">Séries</a></li>
+            <li class="nav__item--footer"><a class="nav__link--footer" href="?page=contact">Contact</a></li>
+          </ul>
+        </nav>
+        <figure class="footer__brand">
+            <img class="footer__brand-logo" src="./Assets/Icon/SVG/MonCIne-signeLogoFooterCreme.svg" alt="Logo MONCINÉ">          
+        </figure>
+        <div class="footer__contact">
+          <address class="footer__address">
+            <p class="footer__address--name">MONCINÉ</p>
+            <p class="footer__address--street">13 AVENUE DU PETIT CHEMIN</p>
+            <p class="footer__address--city">64240 HASPARREN</p>
+            <a class="footer__email" href="mailto:moncine@gmail.com">moncine@gmail.com</a>
+          </address>
+          <nav class="footer__social">
+            <ul class="footer__social-list">
+              <li class="footer__social-item"><a class="footer__social-link" href="#"><img class="footer__social-icon" src="./Assets/Icon/SVG/facebookCreme.svg" alt="Facebook"></a></li>
+              <li class="footer__social-item"><a class="footer__social-link" href="#"><img class="footer__social-icon" src="./Assets/Icon/SVG/instaLogoCreme.svg" alt="Instagram"></a></li>
+              <li class="footer__social-item"><a class="footer__social-link" href="#"><img class="footer__social-icon" src="./Assets/Icon/SVG/twitterLogoCreme.svg" alt="Twitter"></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <img class="footer__bottom-img" src="./Assets/design/images/seats.jpg" alt="" id="seatsFooter" aria-hidden="true">
+        <p class="footer__legal">MONCINÉ 2023 © - MENTIONS LÉGALES</p>
+      </div>
+    </footer>
+
+  </body>
+</html>

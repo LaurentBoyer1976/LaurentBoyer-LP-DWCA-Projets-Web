@@ -1,0 +1,57 @@
+/* ============================================================
+   DESKTOP — ≥ 1800px
+   ============================================================ */
+
+@media screen and (min-width: 1800px) {
+
+  /* Header et Footer pleine largeur, padding dynamique */
+  .header,
+  .footer {
+    width: 100vw;
+    max-width: none;
+    box-sizing: border-box;
+  }
+
+  /* Ajustement taille texte et icônes header/footer */
+  .header,
+  .footer {
+    font-size: clamp(1.2rem, 1.5vw, 2.2rem);   
+  }
+  .header__logo-img,
+  .footer__brand--logo,
+  .footer__social-icon {
+    max-height: clamp(40px, 5vw, 90px);    
+  }
+
+  /* .series centré et contenu */
+  .series {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1600px;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* .series__grid déjà géré pour 4 ou 6 colonnes */
+
+  /* aside.highlight contenu, un peu plus large que .series */
+  .highlight {
+    width: 100%;        
+  }
+}
+@media screen and (min-width: 2200px) {
+  body{
+    background-color: black;
+  }
+  main, article{
+    background-color: var(--white);
+  }
+
+  #MainElement, #HeaderElement, #FooterElement,aside {
+    max-width: 2200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+}

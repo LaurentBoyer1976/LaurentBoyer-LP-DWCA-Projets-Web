@@ -1,0 +1,57 @@
+/* ============================================================
+   MONCINÉ - Feuille de style principale
+   Contient : Imports, Variables, Reset
+   Les styles de layout sont dans les fichiers par breakpoint.
+   ============================================================ */
+
+/* ---- Google Fonts ---- */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Dirt&family=Montserrat:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+/* ============================================================
+   RESPONSIVE — Fichiers par breakpoint
+   ============================================================ */
+@import url('mobile.css');
+@import url('tablette.css');
+@import url('laptop.css');
+@import url('desktop.css');
+@import url('oneSerie.css');
+
+/* ---- Variables CSS ---- */
+:root {
+    --bleu: #1E3D59;
+    --creme: #f5f0e1;
+    --orange: #dfa870;
+    --rouge: #d0602d;
+    --white: #ffffff;
+    --black:#000000;
+
+    --font-size-base: 22px;
+    --font-logo: 'Rubik Dirt', cursive;
+    --font-ui: 'Montserrat', sans-serif;
+    --font-text: 'EB Garamond', serif;
+
+    --max-width: 1200px;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: var(--font-size-base);
+}
+
+body {
+    color: var(--bleu);
+    font-family: var(--font-text);
+    overflow-x: hidden;
+}
+ul, ol { list-style: none; }
+a { text-decoration: none; color: inherit; }
