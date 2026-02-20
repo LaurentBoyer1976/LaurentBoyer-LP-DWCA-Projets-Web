@@ -23,3 +23,4 @@ jobs:
           remote_host: ssh-boyer-laurent.alwaysdata.net
           remote_user: boyer-laurent
           remote_key: ${{ secrets.ALWAYSDATASSHMDP }}
+          #<--Fin de script-->
