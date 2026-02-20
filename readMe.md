@@ -29,6 +29,7 @@ S1 — HTML / CSS / JS (dossier `S1-UE52-HTML-CSS-JS/`)
 - TP3_SemanticLayout.html — organisation sémantique (balises HTML5)
 - TP4_QuizForm.html — formulaire HTML5 (exercices validation)
 - TP5_Grid.html — mise en page avec CSS Grid
+- TP6 Intégration maquette MonCiné
 - TP_JS/ (mini-projet ToDoList):
   - `index.html` (application demo)
   - `Data/` — jeux de données JSON utilisés par les exercices
