@@ -1,0 +1,24 @@
+name: Deploy to Alwaysdata
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH (Rsync)
+        uses: Burnett01/rsync-deployments@7.0.0
+        with:
+          switches: -avzr --delete
+          path: .
+          # Attention : vérifie si ton site est dans /www/ ou à la racine
+          remote_path: /home/boyer-laurent/www/
+          remote_host: ssh-boyer-laurent.alwaysdata.net
+          remote_user: boyer-laurent
+          remote_key: ${{ secrets.ALWAYSDATASSHMDP }}
