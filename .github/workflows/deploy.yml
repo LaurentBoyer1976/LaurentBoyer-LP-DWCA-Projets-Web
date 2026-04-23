@@ -1,48 +1,80 @@
 name: Deploy to Alwaysdata
 on:
-     push:
-       branches: [master]
+  push:
+    branches: [master] # Vérifie bien dans GitKraken que c'est 'master' et pas 'main'
+
+# Variable cruciale pour 2026 : force le moteur GitHub à utiliser Node 24
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
-     deploy:
-       runs-on: ubuntu-latest
-       steps:
-         - uses: actions/checkout@v4
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Répare l'erreur 128 en récupérant tout l'historique
 
-         - uses: actions/setup-node@v4
-           with:
-             node-version: '20'
-             cache: 'npm'
-             cache-dependency-path: S1-UE52-HTML-CSS-JS/TutoHTMLMedia/package-lock.json
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24' 
+          cache: 'npm'
+          # On utilise un pattern global pour éviter les erreurs de chemin
+          cache-dependency-path: "**/package-lock.json"
 
-         - name: Build Astro
-           working-directory: S1-UE52-HTML-CSS-JS/TutoHTMLMedia
-           run: |
-             npm ci
-             npm run build
+      # --- BUILD ASTRO ---
+      - name: Build Astro
+        working-directory: S1-UE52-HTML-CSS-JS/TutoHTMLMedia
+        run: |
+          npm ci
+          npm run build
 
-         - name: Deploy static portfolio (hors sources Astro)
-           uses: Burnett01/rsync-deployments@7.0.0
-           with:
-             switches: >-
-               -avzr --delete
-               --exclude='.git/'
-               --exclude='.github/'
-               --exclude='README.md'
-               --exclude='.gitignore'
-               --exclude='node_modules/'
-               --exclude='/S1-UE52-HTML-CSS-JS/TutoHTMLMedia/'
-             path: ./
-             remote_path: /home/boyer-laurent/www/
-             remote_host: ssh-boyer-laurent.alwaysdata.net
-             remote_user: boyer-laurent
-             remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+      # --- BUILD REACT (Phase 2) ---
+      - name: Build React (imc-app)
+        working-directory: imc-app
+        run: |
+          npm ci
+          npm run build
 
-         - name: Deploy Astro build
-           uses: Burnett01/rsync-deployments@7.0.0
-           with:
-             switches: -avzr --delete
-             path: S1-UE52-HTML-CSS-JS/TutoHTMLMedia/dist/
-             remote_path: /home/boyer-laurent/www/S1-UE52-HTML-CSS-JS/TutoHTMLMedia/
-             remote_host: ssh-boyer-laurent.alwaysdata.net
-             remote_user: boyer-laurent
-             remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+      # --- DEPLOY PHASE ---
+      
+      # 1. Racine (Portfolio + Phase 1 Standalone)
+      - name: Deploy static root
+        uses: Burnett01/rsync-deployments@7.0.0
+        with:
+          switches: >-
+            -avzr --delete
+            --exclude='/S1-UE52-HTML-CSS-JS/TutoHTMLMedia/'
+            --exclude='/imc-app/'
+            --exclude='.git*'
+            --exclude='.github/'
+            --exclude='node_modules/'
+          path: ./
+          remote_path: /home/boyer-laurent/www/
+          remote_host: ssh-boyer-laurent.alwaysdata.net
+          remote_user: boyer-laurent
+          remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+
+      # 2. Astro
+      - name: Deploy Astro
+        uses: Burnett01/rsync-deployments@7.0.0
+        with:
+          switches: -avzr --delete
+          path: S1-UE52-HTML-CSS-JS/TutoHTMLMedia/dist/
+          remote_path: /home/boyer-laurent/www/S1-UE52-HTML-CSS-JS/TutoHTMLMedia/
+          remote_host: ssh-boyer-laurent.alwaysdata.net
+          remote_user: boyer-laurent
+          remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+
+      # 3. React (Phase 2)
+      - name: Deploy React
+        uses: Burnett01/rsync-deployments@7.0.0
+        with:
+          switches: -avzr --delete
+          path: imc-app/dist/
+          remote_path: /home/boyer-laurent/www/imc-app/
+          remote_host: ssh-boyer-laurent.alwaysdata.net
+          remote_user: boyer-laurent
+          remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
