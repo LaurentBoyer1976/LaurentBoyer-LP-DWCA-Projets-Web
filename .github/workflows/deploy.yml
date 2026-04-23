@@ -13,7 +13,7 @@ jobs:
       - name: 1. Recuperation du code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Aide a resoudre l'erreur 128
+          fetch-depth: 0
 
       - name: 2. Installation de Node.js 24
         uses: actions/setup-node@v4
@@ -35,40 +35,35 @@ jobs:
           npm ci
           npm run build
 
-      # --- PHASES DE DEPLOIEMENT (Rsync) ---
+      # --- PHASES DE DEPLOIEMENT (Plus robustes) ---
 
       - name: 5. Deploiement Portfolio (Racine)
-        uses: Burnett01/rsync-deployments@7.0.0
+        uses: easingthemes/ssh-deploy@v5.1.0
         with:
-          switches: >-
-            -avzr --delete
-            --exclude='/S1-UE52-HTML-CSS-JS/TutoHTMLMedia/'
-            --exclude='/S2-UE61-PHP-DB/'
-            --exclude='.git*'
-            --exclude='.github/'
-            --exclude='node_modules/'
-          path: ./
-          remote_path: /home/boyer-laurent/www/
-          remote_host: ssh-boyer-laurent.alwaysdata.net
-          remote_user: boyer-laurent
-          remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+          ARGS: "-avzr --delete"
+          SOURCE: "./"
+          REMOTE_HOST: "ssh-boyer-laurent.alwaysdata.net"
+          REMOTE_USER: "boyer-laurent"
+          TARGET: "/home/boyer-laurent/www/"
+          EXCLUDE: "/S1-UE52-HTML-CSS-JS/TutoHTMLMedia/, /S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/, .git*, .github/, node_modules/"
 
       - name: 6. Deploiement Build Astro
-        uses: Burnett01/rsync-deployments@7.0.0
+        uses: easingthemes/ssh-deploy@v5.1.0
         with:
-          switches: -avzr --delete
-          path: S1-UE52-HTML-CSS-JS/TutoHTMLMedia/dist/
-          remote_path: /home/boyer-laurent/www/S1-UE52-HTML-CSS-JS/TutoHTMLMedia/
-          remote_host: ssh-boyer-laurent.alwaysdata.net
-          remote_user: boyer-laurent
-          remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+          ARGS: "-avzr --delete"
+          SOURCE: "S1-UE52-HTML-CSS-JS/TutoHTMLMedia/dist/"
+          REMOTE_HOST: "ssh-boyer-laurent.alwaysdata.net"
+          REMOTE_USER: "boyer-laurent"
+          TARGET: "/home/boyer-laurent/www/S1-UE52-HTML-CSS-JS/TutoHTMLMedia/"
 
       - name: 7. Deploiement Build React (Phase 2)
-        uses: Burnett01/rsync-deployments@7.0.0
+        uses: easingthemes/ssh-deploy@v5.1.0
         with:
-          switches: -avzr --delete
-          path: S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/dist/
-          remote_path: /home/boyer-laurent/www/S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/
-          remote_host: ssh-boyer-laurent.alwaysdata.net
-          remote_user: boyer-laurent
-          remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+          ARGS: "-avzr --delete"
+          SOURCE: "S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/dist/"
+          REMOTE_HOST: "ssh-boyer-laurent.alwaysdata.net"
+          REMOTE_USER: "boyer-laurent"
+          TARGET: "/home/boyer-laurent/www/S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/"
