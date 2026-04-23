@@ -82,7 +82,9 @@ a{ color: var(--c3); text-decoration: none; }
     outline-offset:3px;
 }
 /* 🖼️ Card Style (tpSection) */
-.tpSection{
+.tpSection__wrapper--column{
+    display: flex;
+    flex-flow: column;
     background: var(--card-grad);
     border-radius: 14px; /* Unifié à 14px de homesStyle */
     padding: 0.9rem; /* Unifié à 0.9rem de homesStyle */
@@ -90,10 +92,50 @@ a{ color: var(--c3); text-decoration: none; }
     border: 1px solid rgba(81,112,205,0.08); /* Bordure de la version homesStyle */
     transition: transform 200ms ease, box-shadow 200ms ease; /* Ajouté pour le hover */
 }
+.wrapper__row{
+    display: flex;
+    flex-flow: row;
+   gap: 2rem;
+}
+.tpSection{
+    background: var(--card-grad);
+    border-radius: 14px; /* Unifié à 14px de homesStyle */
+    padding: 0.9rem; /* Unifié à 0.9rem de homesStyle */
+    box-shadow: 0 12px 32px rgba(16,24,40,0.10); /* Unifié à l'ombre plus forte de homesStyle */
+    border: 1px solid rgba(81,112,205,0.08); /* Bordure de la version homesStyle */
+    transition: transform 200ms ease, box-shadow 200ms ease; /* Ajouté pour le hover */
+    width: fit-content;
+}
+.react{
+    width: fit-content;
+}
+.tpSection__container--react{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    gap: 1rem;
+}
+.sectionTitle__wrapper--column{
+    display: flex;
+    flex-flow: row;
+    gap: 2rem;
+    justify-content: center;
+}
+.noJustify{
+    justify-content: unset!important;
+    align-items: center;
+}
+.wrapper--center{
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 2rem;
+}
 .tpSection:hover{
     transform: translateY(-4px);
     box-shadow: 0 18px 36px rgba(81,112,205,0.06);
 }
+
 
 .tpSection__title{
     font-family: "Fugaz One", sans-serif;

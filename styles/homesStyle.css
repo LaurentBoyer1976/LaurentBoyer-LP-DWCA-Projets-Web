@@ -51,11 +51,47 @@
     background-color: white;
     width:100%; height:360px; border-radius:10px; display:flex; justify-content: center; box-sizing:border-box;
 }
-@media (max-width: 768px) {
-    .tpSection__container--fileView {
-        min-height: 400px;
-    }
+.tpSection__container--react {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: visible; /* Important : permet au zoom de sortir du cadre de la figure */
+    margin: 2rem 0;
 }
+
+.link__diagram {
+    display: flex;
+    justify-content: center;
+    position: relative; /* Prépare le changement de niveau (z-index) */
+    z-index: 1;
+    text-decoration: none;
+    transition: z-index 0.3s;
+}
+
+.diagram {
+    max-width: 250px;
+    height: auto; /* Garde le ratio d'aspect */
+    object-fit: cover;
+    cursor: zoom-in; /* Change le curseur pour indiquer l'effet de zoom */
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Animation plus fluide */
+}
+
+/* L'effet au survol */
+.link__diagram:hover {
+    z-index: 10; /* Passe devant le titre et la légende */
+}
+
+.link__diagram:hover .diagram {
+    transform: scale(5); /* Zoom de 2x (ajustable selon vos besoins) */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Optionnel : ajoute une ombre pour l'effet de profondeur */
+}
+
+.tpSection__container--fileLegend {
+    margin-top: 15px;
+    font-style: italic;
+    color: #666;
+}
+
 .tpSection__container--fileLegend{
     font-family: "Cardo", serif;
     font-weight:700;
@@ -137,10 +173,20 @@
     gap: 3rem;
     display: flex;
     flex-flow: row;}
+.tpSection__row{
+    display: flex;
+    flex-flow: row;
+    gap: 2rem;
+}
 /* Responsiveness spécifiques à 'Homes' */
 @media (max-width:800px){
     .sections__wrapper{ grid-template-columns: 1fr; }
     .tpSection{ width:100%; }
     .header__nav{ justify-content:center }
     .mainArticle{ display:block }
+}
+@media (max-width: 768px) {
+    .tpSection__container--fileView {
+        min-height: 400px;
+    }
 }
