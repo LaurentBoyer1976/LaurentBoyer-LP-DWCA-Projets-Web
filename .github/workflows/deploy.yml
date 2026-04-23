@@ -1,26 +1,48 @@
 name: Deploy to Alwaysdata
-
 on:
-  push:
-    branches:
-      - master
-
+     push:
+       branches: [master]
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # <--- Il doit être ici pour que Git récupère bien les fichiers
+     deploy:
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v4
 
-      - name: Deploy via SSH (Rsync)
-        uses: Burnett01/rsync-deployments@7.0.0
-        with:
-          switches: -avzr --delete
-          path: .
-          remote_path: /home/boyer-laurent/www/
-          remote_host: ssh-boyer-laurent.alwaysdata.net
-          remote_user: boyer-laurent
-          remote_key: ${{ secrets.ALWAYSDATASSHMDP }}
-          #<--Fin de script-->
+         - uses: actions/setup-node@v4
+           with:
+             node-version: '20'
+             cache: 'npm'
+             cache-dependency-path: S1-UE52-HTML-CSS-JS/TutoHTMLMedia/package-lock.json
+
+         - name: Build Astro
+           working-directory: S1-UE52-HTML-CSS-JS/TutoHTMLMedia
+           run: |
+             npm ci
+             npm run build
+
+         - name: Deploy static portfolio (hors sources Astro)
+           uses: Burnett01/rsync-deployments@7.0.0
+           with:
+             switches: >-
+               -avzr --delete
+               --exclude='.git/'
+               --exclude='.github/'
+               --exclude='README.md'
+               --exclude='.gitignore'
+               --exclude='node_modules/'
+               --exclude='/S1-UE52-HTML-CSS-JS/TutoHTMLMedia/'
+             path: ./
+             remote_path: /home/boyer-laurent/www/
+             remote_host: ssh-boyer-laurent.alwaysdata.net
+             remote_user: boyer-laurent
+             remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+
+         - name: Deploy Astro build
+           uses: Burnett01/rsync-deployments@7.0.0
+           with:
+             switches: -avzr --delete
+             path: S1-UE52-HTML-CSS-JS/TutoHTMLMedia/dist/
+             remote_path: /home/boyer-laurent/www/S1-UE52-HTML-CSS-JS/TutoHTMLMedia/
+             remote_host: ssh-boyer-laurent.alwaysdata.net
+             remote_user: boyer-laurent
+             remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
