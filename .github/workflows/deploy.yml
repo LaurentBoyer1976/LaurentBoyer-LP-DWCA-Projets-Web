@@ -1,48 +1,81 @@
 name: Deploy to Alwaysdata
 on:
-     push:
-       branches: [master]
+  push:
+    branches: [master]
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
-     deploy:
-       runs-on: ubuntu-latest
-       steps:
-         - uses: actions/checkout@v4
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-         - uses: actions/setup-node@v4
-           with:
-             node-version: '20'
-             cache: 'npm'
-             cache-dependency-path: S1-UE52-HTML-CSS-JS/TutoHTMLMedia/package-lock.json
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: "**/package-lock.json"
 
-         - name: Build Astro
-           working-directory: S1-UE52-HTML-CSS-JS/TutoHTMLMedia
-           run: |
-             npm ci
-             npm run build
+      # --- BUILD ASTRO ---
+      - name: Build Astro
+        working-directory: S1-UE52-HTML-CSS-JS/TutoHTMLMedia
+        run: |
+          npm ci
+          npm run build
 
-         - name: Deploy static portfolio (hors sources Astro)
-           uses: Burnett01/rsync-deployments@7.0.0
-           with:
-             switches: >-
-               -avzr --delete
-               --exclude='.git/'
-               --exclude='.github/'
-               --exclude='README.md'
-               --exclude='.gitignore'
-               --exclude='node_modules/'
-               --exclude='/S1-UE52-HTML-CSS-JS/TutoHTMLMedia/'
-             path: ./
-             remote_path: /home/boyer-laurent/www/
-             remote_host: ssh-boyer-laurent.alwaysdata.net
-             remote_user: boyer-laurent
-             remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+      # --- BUILD REACT (Phase 2) ---
+      - name: Build React (Phase 2)
+        # Chemin corrigé avec le dossier parent S2-UE61-PHP-DB
+        working-directory: S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2
+        run: |
+          npm ci
+          npm run build
 
-         - name: Deploy Astro build
-           uses: Burnett01/rsync-deployments@7.0.0
-           with:
-             switches: -avzr --delete
-             path: S1-UE52-HTML-CSS-JS/TutoHTMLMedia/dist/
-             remote_path: /home/boyer-laurent/www/S1-UE52-HTML-CSS-JS/TutoHTMLMedia/
-             remote_host: ssh-boyer-laurent.alwaysdata.net
-             remote_user: boyer-laurent
-             remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+      # --- DEPLOY PHASE ---
+
+      # 1. Racine (Portfolio + Phase 1)
+      - name: Deploy static root
+        uses: Burnett01/rsync-deployments@7.0.0
+        with:
+          switches: >-
+            -avzr --delete
+            --exclude='/S1-UE52-HTML-CSS-JS/TutoHTMLMedia/'
+            --exclude='/S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/'
+            --exclude='.git*'
+            --exclude='.github/'
+            --exclude='node_modules/'
+          path: ./
+          remote_path: /home/boyer-laurent/www/
+          remote_host: ssh-boyer-laurent.alwaysdata.net
+          remote_user: boyer-laurent
+          remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+
+      # 2. Déploiement Astro
+      - name: Deploy Astro build
+        uses: Burnett01/rsync-deployments@7.0.0
+        with:
+          switches: -avzr --delete
+          path: S1-UE52-HTML-CSS-JS/TutoHTMLMedia/dist/
+          remote_path: /home/boyer-laurent/www/S1-UE52-HTML-CSS-JS/TutoHTMLMedia/
+          remote_host: ssh-boyer-laurent.alwaysdata.net
+          remote_user: boyer-laurent
+          remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+
+      # 3. Déploiement React (Phase 2)
+      - name: Deploy React Phase 2 build
+        uses: Burnett01/rsync-deployments@7.0.0
+        with:
+          switches: -avzr --delete
+          # Chemin local corrigé
+          path: S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/dist/
+          # Chemin distant corrigé (doit correspondre à ton "base" dans vite.config.js)
+          remote_path: /home/boyer-laurent/www/S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/
+          remote_host: ssh-boyer-laurent.alwaysdata.net
+          remote_user: boyer-laurent
+          remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
