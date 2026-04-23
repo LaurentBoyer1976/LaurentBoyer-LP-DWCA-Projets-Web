@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './layouts/Layout';
 import Home from './pages/Home';
 
@@ -8,6 +8,8 @@ const AppRouter = () => (
         <Routes>
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
+                {/* Fallback : attrape /index.html ou toute URL inconnue et renvoie sur / */}
+                <Route path="*" element={<Navigate to="/" replace />} />
             </Route>
         </Routes>
     </Router>
