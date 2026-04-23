@@ -46,6 +46,7 @@ jobs:
           REMOTE_HOST: "ssh-boyer-laurent.alwaysdata.net"
           REMOTE_USER: "boyer-laurent"
           TARGET: "/home/boyer-laurent/www/"
+          # Note: Les exclusions sont séparées par des virgules ici
           EXCLUDE: "/S1-UE52-HTML-CSS-JS/TutoHTMLMedia/, /S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/, .git*, .github/, node_modules/"
 
       - name: 6. Deploiement Build Astro
