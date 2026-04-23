@@ -4,6 +4,7 @@ on:
     branches: [master]
 
 env:
+  # On force Node 24 pour supprimer les warnings de 2026
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
@@ -13,14 +14,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0 # Résout l'erreur Git 128
 
       - name: Setup Node.js 24
         uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: 'npm'
-          cache-dependency-path: "**/package-lock.json"
+          # On surveille les deux fichiers de lock pour un cache efficace
+          cache-dependency-path: |
+            S1-UE52-HTML-CSS-JS/TutoHTMLMedia/package-lock.json
+            S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/package-lock.json
 
       # --- BUILD ASTRO ---
       - name: Build Astro
@@ -31,13 +35,13 @@ jobs:
 
       # --- BUILD REACT (Phase 2) ---
       - name: Build React (Phase 2)
-        # Chemin corrigé avec le dossier parent S2-UE61-PHP-DB
+        # Chemin EXACT corrigé selon ton arborescence
         working-directory: S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2
         run: |
           npm ci
           npm run build
 
-      # --- DEPLOY PHASE ---
+      # --- DEPLOY PHASE (Burnett01 / Rsync) ---
 
       # 1. Racine (Portfolio + Phase 1)
       - name: Deploy static root
@@ -56,7 +60,7 @@ jobs:
           remote_user: boyer-laurent
           remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
 
-      # 2. Déploiement Astro
+      # 2. Astro
       - name: Deploy Astro build
         uses: Burnett01/rsync-deployments@7.0.0
         with:
@@ -67,14 +71,12 @@ jobs:
           remote_user: boyer-laurent
           remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
 
-      # 3. Déploiement React (Phase 2)
+      # 3. React (Phase 2)
       - name: Deploy React Phase 2 build
         uses: Burnett01/rsync-deployments@7.0.0
         with:
           switches: -avzr --delete
-          # Chemin local corrigé
           path: S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/dist/
-          # Chemin distant corrigé (doit correspondre à ton "base" dans vite.config.js)
           remote_path: /home/boyer-laurent/www/S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/
           remote_host: ssh-boyer-laurent.alwaysdata.net
           remote_user: boyer-laurent
