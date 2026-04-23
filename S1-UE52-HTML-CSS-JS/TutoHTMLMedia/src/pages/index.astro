@@ -1,0 +1,203 @@
+---
+import { getImage } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import '../Styles/style.css';
+import '../Styles/home.css';
+import elementsData from '../datas/Json/datas.json';
+
+const elements = elementsData.elements || [];
+const definitions = elementsData.definition || [];
+const definitionContent = definitions.find((def: any) => def.id === 'multimediaRoleInModernWebSite');
+
+const baseUrl = import.meta.env.BASE_URL || '/';
+---
+
+<Layout title="Tutoriel HTML Media - Accueil">
+  <main class="home-main">
+    <section class="hero">
+      <h1>Tutoriel Éléments HTML Media</h1>
+      <p>Découvrez les éléments HTML5 pour l'intégration de médias dans vos pages web</p>
+      <p class="hero-subtitle">+ API JavaScript multimédia pour fonctionnalités avancées</p>
+    </section>
+
+    {/* WRAPPER: Définition et Éléments côte-à-côte */}
+    <div class="main-content-wrapper">
+      {definitionContent && (
+        <section class="content-section definition-section">
+        <h2 class="section-title">📖 Qu'est-ce qu'un média ?</h2>
+        <p class="section-subtitle">Matière d'entrée pour comprendre les bases</p>
+        
+        <div class="definition-container">
+          {/* Article principal au centre */}
+          <article class="definition-article">
+            <h3>Un Média</h3>
+            
+            <h4>Selon le Larousse</h4>
+            <p>
+              <strong>Média</strong> (nom masculin) - Procédé permettant la distribution, la diffusion ou la communication d'œuvres, de documents, ou de messages sonores ou audiovisuels (presse, cinéma, affiche, radiodiffusion, télédiffusion, vidéographie, télédistribution, télématique, télécommunication).
+            </p>
+            <p class="note">
+              <em>Note :</em> On trouve aussi <em>médium</em> ou <em>medium</em> au singulier, et <em>media</em>, nom masculin invariable.
+            </p>
+
+            <h4>Selon Gemini</h4>
+            <p>
+              <strong>Média</strong> (nom masculin) - Le terme média désigne tout moyen de distribution, de diffusion ou de communication (interpersonnelle, de masse ou de groupe) d'œuvres, de documents, de messages écrits, visuels, sonores ou audiovisuels. En général, il fait référence aux moyens de diffusion massive de l'information.
+            </p>
+            <p class="examples-intro">Exemples de médias :</p>
+            <ul class="examples-list">
+              <li>La presse (journaux, magazines)</li>
+              <li>La radio</li>
+              <li>La télévision</li>
+              <li>Le cinéma</li>
+              <li>Internet (sites web, réseaux sociaux, etc.)</li>
+            </ul>
+            <p class="etymology">
+              <em>Étymologie :</em> Le mot vient du latin <strong>media</strong>, pluriel de <strong>medium</strong> (milieu, intermédiaire).
+            </p>
+
+            <h4>Définition en HTML5</h4>
+            <p>
+              Dans le contexte du HTML et du développement web, lorsque l'on parle de média, on fait référence à tout contenu non textuel qui sert de support d'information au sein d'une page web.
+            </p>
+            <p class="examples-intro">Ceci inclut notamment :</p>
+            <ol class="examples-list">
+              <li><strong>Images et Photos :</strong> Utilisation des balises <code>&lt;picture&gt;</code>, <code>&lt;img&gt;</code>, ou formats vectoriels comme le <code>&lt;svg&gt;</code></li>
+              <li><strong>Vidéos :</strong> Utilisation de la balise <code>&lt;video&gt;</code></li>
+              <li><strong>Audio :</strong> Utilisation de la balise <code>&lt;audio&gt;</code></li>
+              <li><strong>Contenu interactif/multimédia :</strong> Animations, graphiques dynamiques, etc., souvent intégrés via <code>&lt;iframe&gt;</code> ou d'autres techniques</li>
+            </ol>
+            <p class="definition-resume">
+              <strong>En bref :</strong> En HTML, les médias sont les vecteurs d'information et de contenu autres que le texte pur.
+            </p>
+          </article>
+
+          {/* Cartes définitions sur le côté */}
+          <aside class="definition-sidebar">
+            {definitionContent.definitions && (
+              <>
+                {definitionContent.definitions.larousse && (
+                  <div class="definition-card larousse-card">
+                    <div class="definition-source">📚 Larousse</div>
+                    <h5>{definitionContent.definitions.larousse.type}</h5>
+                    <p class="definition-text">{definitionContent.definitions.larousse.definition}</p>
+                    {definitionContent.definitions.larousse.notes && (
+                      <p class="definition-notes">
+                        <strong>Note :</strong> {definitionContent.definitions.larousse.notes}
+                      </p>
+                    )}
+                  </div>
+                )}
+                
+                {definitionContent.definitions.gemini && (
+                  <div class="definition-card gemini-card">
+                    <div class="definition-source">✨ Général</div>
+                    <h5>{definitionContent.definitions.gemini.type}</h5>
+                    <p class="definition-text">{definitionContent.definitions.gemini.definition}</p>
+                    {definitionContent.definitions.gemini.exemples && (
+                      <div class="definition-exemples">
+                        <h6>Exemples :</h6>
+                        <ul>
+                          {definitionContent.definitions.gemini.exemples.map((exemple: string) => (
+                            <li>{exemple}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {definitionContent.definitions.gemini.etymologie && (
+                      <p class="definition-etymologie">
+                        <em>{definitionContent.definitions.gemini.etymologie}</em>
+                      </p>
+                    )}
+                  </div>
+                )}
+                
+                {definitionContent.definitions.html5 && (
+                  <div class="definition-card html5-card">
+                    <div class="definition-source">🏷️ HTML5</div>
+                    <h5>{definitionContent.definitions.html5.type}</h5>
+                    <p class="definition-text">{definitionContent.definitions.html5.definition}</p>
+                    {definitionContent.definitions.html5.exemples && (
+                      <div class="definition-exemples">
+                        <h6>Types de médias :</h6>
+                        <ul>
+                          {definitionContent.definitions.html5.exemples.map((exemple: string) => (
+                            <li>{exemple}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {definitionContent.definitions.html5.resume && (
+                      <p class="definition-resume">
+                        <strong>Résumé :</strong> {definitionContent.definitions.html5.resume}
+                      </p>
+                    )}
+                  </div>
+                )}
+              </>
+            )}
+          </aside>
+        </div>
+      </section>
+    )}
+
+    {/* Wrapper pour Éléments */}
+    <div class="elements-api-wrapper">
+      <section class="content-section elements-section">
+        <h2 class="section-title">🏷️ Éléments HTML5 Multimédia</h2>
+        <p class="section-subtitle">Balises HTML5 natives pour intégrer images, audio et vidéo</p>
+        <div class="elements-grid">
+          {elements.map((element: any) => (
+            <a href={`${baseUrl}elements/${element.balise}`} class="element-card">
+              <h3>&lt;{element.balise}&gt;</h3>
+              <span class="element-section">{element.section}</span>
+              <p class="element-description">{element.description.substring(0, 80)}...</p>
+              <span class="element-link">Voir les détails →</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+
+  {/* API JavaScript en dehors du main */}
+  <section class="content-section api-section api-section-content">
+    <h2 class="section-title">⚡ API JavaScript Multimédia</h2>
+    <p class="section-subtitle">
+      Fonctionnalités avancées pour webcam, microphone et plus
+      <span class="badge-optional">Optionnel / Avancé</span>
+    </p>
+    <div class="api-grid">
+      <a href={`${baseUrl}api/getUserMedia`} class="api-card">
+        <div class="api-icon">🎥</div>
+        <h3>getUserMedia()</h3>
+        <p>Accédez à la webcam et au microphone de l'utilisateur pour créer des applications interactives</p>
+        <div class="api-features">
+          <span class="feature-tag">Webcam</span>
+          <span class="feature-tag">Microphone</span>
+          <span class="feature-tag">Capture</span>
+        </div>
+        <span class="element-link">Voir la documentation →</span>
+      </a>
+      
+      <a href={`${baseUrl}api/webcam-demo`} class="api-card demo-card">
+        <div class="api-icon">🚀</div>
+        <h3>Démo Interactive</h3>
+        <p>Testez la capture webcam et la prise de photos en temps réel directement dans votre navigateur</p>
+        <div class="api-features">
+          <span class="feature-tag demo">Live Demo</span>
+          <span class="feature-tag demo">Capture Photo</span>
+          <span class="feature-tag demo">Temps Réel</span>
+        </div>
+        <span class="element-link">Lancer la démo →</span>
+      </a>
+    </div>
+  </section>
+
+  {/* Quick Links */}
+  <section class="quick-links">
+    <a href={`${baseUrl}documentation`} class="quick-link-btn">
+      📚 Voir toute la documentation
+    </a>
+  </section>
+</Layout>
