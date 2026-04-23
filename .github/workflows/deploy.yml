@@ -40,7 +40,7 @@ jobs:
       - name: 5. Deploiement Portfolio (Racine)
         uses: easingthemes/ssh-deploy@v5.1.0
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.ALWAYSDATASSHMDP }}
           ARGS: "-avzr --delete"
           SOURCE: "./"
           REMOTE_HOST: "ssh-boyer-laurent.alwaysdata.net"
@@ -51,7 +51,7 @@ jobs:
       - name: 6. Deploiement Build Astro
         uses: easingthemes/ssh-deploy@v5.1.0
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.ALWAYSDATASSHMDP }}
           ARGS: "-avzr --delete"
           SOURCE: "S1-UE52-HTML-CSS-JS/TutoHTMLMedia/dist/"
           REMOTE_HOST: "ssh-boyer-laurent.alwaysdata.net"
@@ -61,7 +61,7 @@ jobs:
       - name: 7. Deploiement Build React (Phase 2)
         uses: easingthemes/ssh-deploy@v5.1.0
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.ALWAYSDATA_SSH_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.ALWAYSDATASSHMDP }}
           ARGS: "-avzr --delete"
           SOURCE: "S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/dist/"
           REMOTE_HOST: "ssh-boyer-laurent.alwaysdata.net"
