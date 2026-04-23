@@ -4,53 +4,46 @@ on:
     branches: [master]
 
 env:
-  # On force Node 24 pour supprimer les warnings de 2026
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: 1. Recuperation du code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Résout l'erreur Git 128
+          fetch-depth: 0 # Aide a resoudre l'erreur 128
 
-      - name: Setup Node.js 24
+      - name: 2. Installation de Node.js 24
         uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: 'npm'
-          # On surveille les deux fichiers de lock pour un cache efficace
-          cache-dependency-path: |
-            S1-UE52-HTML-CSS-JS/TutoHTMLMedia/package-lock.json
-            S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/package-lock.json
+          cache-dependency-path: "**/package-lock.json"
 
-      # --- BUILD ASTRO ---
-      - name: Build Astro
+      # --- PHASES DE BUILD ---
+      - name: 3. Build Astro
         working-directory: S1-UE52-HTML-CSS-JS/TutoHTMLMedia
         run: |
           npm ci
           npm run build
 
-      # --- BUILD REACT (Phase 2) ---
-      - name: Build React (Phase 2)
-        # Chemin EXACT corrigé selon ton arborescence
+      - name: 4. Build React (Phase 2)
         working-directory: S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2
         run: |
           npm ci
           npm run build
 
-      # --- DEPLOY PHASE (Burnett01 / Rsync) ---
+      # --- PHASES DE DEPLOIEMENT (Rsync) ---
 
-      # 1. Racine (Portfolio + Phase 1)
-      - name: Deploy static root
+      - name: 5. Deploiement Portfolio (Racine)
         uses: Burnett01/rsync-deployments@7.0.0
         with:
           switches: >-
             -avzr --delete
             --exclude='/S1-UE52-HTML-CSS-JS/TutoHTMLMedia/'
-            --exclude='/S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/'
+            --exclude='/S2-UE61-PHP-DB/'
             --exclude='.git*'
             --exclude='.github/'
             --exclude='node_modules/'
@@ -60,8 +53,7 @@ jobs:
           remote_user: boyer-laurent
           remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
 
-      # 2. Astro
-      - name: Deploy Astro build
+      - name: 6. Deploiement Build Astro
         uses: Burnett01/rsync-deployments@7.0.0
         with:
           switches: -avzr --delete
@@ -71,8 +63,7 @@ jobs:
           remote_user: boyer-laurent
           remote_key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
 
-      # 3. React (Phase 2)
-      - name: Deploy React Phase 2 build
+      - name: 7. Deploiement Build React (Phase 2)
         uses: Burnett01/rsync-deployments@7.0.0
         with:
           switches: -avzr --delete
