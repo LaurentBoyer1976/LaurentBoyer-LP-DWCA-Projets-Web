@@ -179,7 +179,7 @@ LaurentBoyer-LP-DWCA-Projets-Web/
 
 Premiers projets en React avec composants simples et gestion d'état.
 
-📁 [`Phase_1/`](./S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_1/)
+📁 [`Phase_1/`](S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_1/)
 
 ---
 
@@ -187,7 +187,7 @@ Premiers projets en React avec composants simples et gestion d'état.
 
 Projet complet avec React, Vite, composants composés et gestion d'état sophistiquée.
 
-📁 [`Phase_2/`](./S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/)
+📁 [`Phase_2/`](S2-UE61-PHP-DB/TP_UE_6_3_1/Phase_2/)
 
 **Stack** :
 - ⚛️ React
